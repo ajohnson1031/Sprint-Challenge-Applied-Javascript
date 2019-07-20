@@ -22,10 +22,11 @@ const cardsContainer = document.querySelector(".cards-container"),
   getData = axios
     .get("https://lambda-times-backend.herokuapp.com/articles")
     .then(response => {
+      console.log(response);
       const allArticles = Object.entries(response.data.articles);
       allArticles.map(topic => {
         topic[1].map(item => {
-          cardsContainer.appendChild(createCards(item));
+          cardsContainer.appendChild(createCards(item, topic[0]));
         });
       });
     })
@@ -33,8 +34,10 @@ const cardsContainer = document.querySelector(".cards-container"),
       console.log(`Error: ${err}`);
     });
 
-const createCards = item => {
+const createCards = (item, dataAttr) => {
   //Element Creation
+  if (dataAttr === "node") dataAttr = "node.js";
+
   const card = document.createElement("div");
   const headline = document.createElement("div");
   const author = document.createElement("div");
@@ -47,6 +50,7 @@ const createCards = item => {
   headline.classList.add("headline");
   author.classList.add("author");
   imgContainer.classList.add("img-container");
+  card.setAttribute("data-tab", dataAttr);
 
   //Adding of Content
   headline.textContent = item.headline;

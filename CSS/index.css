@@ -217,6 +217,7 @@ body {
   }
 }
 .cards-container .card {
+  display: none;
   border-bottom: 1px solid lightgrey;
   display: flex;
   justify-content: space-between;
@@ -301,4 +302,5 @@ body {
 }
 .carousel img {
   width: 100%;
+  display: block;
 }
