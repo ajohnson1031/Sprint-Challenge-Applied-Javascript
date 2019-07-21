@@ -34,6 +34,7 @@ const topics = document.querySelector(".topics"),
 
 const showCards = e => {
   const cards = document.querySelectorAll(".card");
+  const tabs = document.querySelectorAll(".tab");
 
   cards.forEach(card => {
     if (e.target.getAttribute("data-tab") === "all")
@@ -44,4 +45,7 @@ const showCards = e => {
           ? "block"
           : "none";
   });
+
+  tabs.forEach(tab => tab.classList.remove("active-tab"));
+  e.target.classList.add("active-tab");
 };
